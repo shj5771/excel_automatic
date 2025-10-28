@@ -20,7 +20,7 @@ fill_template_2.py = template에 맞춰서 중복 false인 애들 자동입력
 
 5. 끝
 
-
+```
 C:\Users\ST\Desktop\excel_program\
 │
 ├─ main.py                           ← 실행할 메인 파일
@@ -38,4 +38,4 @@ C:\Users\ST\Desktop\excel_program\
         ├─ hangawon_filled_part_1.xlsx
         ├─ hangawon_filled_part_2.xlsx
         └─ … (1500줄씩 분할된 결과)
-
+```
