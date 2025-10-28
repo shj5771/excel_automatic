@@ -1,46 +1,21 @@
-# 파일명: make_190k_with_url.py
-# 사용법: python make_190k_with_url.py
-
 import pandas as pd
-import random
+from pathlib import Path
 
-# 행 개수 설정
-n = 190_000
+# ✅ 중복 검사할 파일 지정
+path = Path(r"C:\Users\ST\Desktop\excel_program\input\real_csv.csv")
+# path = Path(r"C:\Users\ST\Desktop\excel_program\output\real_csv_only_unique.csv")  # <- 비중복 파일 검사하려면 이 줄로 바꾸기
 
-print("📊 19만 행짜리 CSV 생성 중...")
+df = pd.read_csv(path, dtype=str, encoding="utf-8-sig")
+col = "매칭용"  # 전화번호 컬럼명
 
-# 더미 데이터 구성
-data = {
-    "조사명": ["테스트조사"] * n,
-    "이름": [f"홍길동{i}" for i in range(1, n + 1)],
-    "전화번호": [
-        f"010-{random.randint(1000,9999)}-{random.randint(1000,9999)}"
-        for _ in range(n)
-    ],
-    "소속": [random.choice(["A리서치", "B리서치", "C리서치"]) for _ in range(n)],
-    "1": [random.randint(1, 5) for _ in range(n)],
-    "2": [random.randint(1, 5) for _ in range(n)],
-    "3": [random.randint(1, 5) for _ in range(n)],
-    "4": [random.randint(1, 5) for _ in range(n)],
-    "5": [random.randint(1, 5) for _ in range(n)],
-}
+# 중복 탐지
+dupes = df[col].value_counts()
+dupes = dupes[dupes > 1]
 
-df = pd.DataFrame(data)
+print(f"\n📂 검사 대상 파일: {path.name}")
 
-# URL 컬럼 추가 (랜덤 예시 링크)
-df["URL"] = [
-    f"https://survey.example.com/form?id={i:06d}"
-    for i in range(1, n + 1)
-]
-
-# 중복 전화번호 일부러 섞기 (랜덤 1000개 중복)
-for i in range(1000):
-    dup_phone = df.loc[random.randint(0, n - 1), "전화번호"]
-    df.loc[random.randint(0, n - 1), "전화번호"] = dup_phone
-
-# 저장
-output = "C:/Users/ST/Desktop/excel_program/123.csv"
-df.to_csv(output, index=False, encoding="utf-8-sig")
-
-print(f"🎉 완료! 생성된 파일 경로: {output}")
-print(f"총 {len(df):,}행, URL 포함, 중복 전화번호 약 1000개 삽입됨 ✅")
+if len(dupes) == 0:
+    print("✅ 완벽! 중복 전화번호 없음.")
+else:
+    print(f"⚠️ 중복된 전화번호 {len(dupes)}건 발견:")
+    print(dupes.head(20))
