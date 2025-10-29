@@ -2,6 +2,7 @@
 # 사용법: python dedupe_phone.py real_csv.csv
 # (입력 파일은 C:\Users\ST\Desktop\excel_program\input 안에 있어야 함)
 
+### 원본 엑셀을 csv로 저장 한 후, 그 csv를 전화번호 중복 제거 및 분리하는 스크립트 ###
 import sys
 import re
 import pandas as pd
