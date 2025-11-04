@@ -64,6 +64,9 @@ for i in range(num_chunks):
     start_row = 2
     for j, row in sub_df.iterrows():
         phone = str(row[PHONE_COL]).strip()
+        # ✅ 맨 앞에 0이 없으면 강제로 붙이기
+        if phone and not phone.startswith("0"):
+            phone = "0" + phone
         url = str(row[URL_COL]).strip()
         ws[f"A{start_row + (j - start_idx)}"] = phone
         ws[f"G{start_row + (j - start_idx)}"] = url
