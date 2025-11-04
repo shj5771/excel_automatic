@@ -1,0 +1,7 @@
+# 엑셀 프로그램 입력/출력 폴더 무시
+input/*
+output/*
+
+!input/.gitkeep
+!output/.gitkeep
+# --- IGNORE ---
