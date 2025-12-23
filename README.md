@@ -43,8 +43,8 @@ C:\Users\ST\Desktop\excel_program\
 ├─ fill_template_split_debug.py       ← 2단계: 템플릿 채우기
 │
 ├─ input\
-│   ├─ real_csv.csv                  ← ✅ csv(false, tru 추)
-│   └─ hangawon.xlsx                 ← ✅ 템플릿 (A열 번호 / G열 URL)
+│   ├─ real_csv.csv                  ← csv(false, tru 추)
+│   └─ hangawon.xlsx                 ← 템플릿 (A열 번호 / G열 URL)
 │
 └─ output\
     ├─ real_csv_only_duplicates.csv  ← (자동 생성) 중복된 행
